@@ -1,0 +1,770 @@
+/***************************************************
+    BRAND VARIABLES
+***************************************************/
+:root {
+    --bs-primary: #ffb6c1; /* baby pink */
+    --bs-primary-dark: #ff9eb0;
+    --bs-primary-soft: #ffd7e2;
+    --pink: #ff69b4;
+    --soft-pink: #fff5f8;
+}
+
+/***************************************************
+    GENERAL
+***************************************************/
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8f9fa;
+    font-family: "Poppins", sans-serif;
+}
+
+img.animated.pulse {
+    animation-duration: 5s;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+/***************************************************
+    INTRO VIDEO OVERLAY
+***************************************************/
+#introOverlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    overflow: hidden;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+#introOverlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+#introOverlay.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-text {
+    position: absolute;
+    bottom: 12%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.intro-text h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 4.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-shadow: 0 6px 25px rgba(0, 0, 0, 0.85);
+}
+
+.welcome-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+/* Subtitle */
+.intro-text p {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.75);
+}
+
+/***************************************************
+    BUTTONS
+***************************************************/
+.btn {
+    font-weight: 500;
+    transition: all 0.4s ease;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+    border-radius: 50px;
+    padding: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-primary-dark) !important;
+    border-color: var(--bs-primary-dark) !important;
+    transform: translateY(-2px);
+}
+
+/***************************************************
+    NAVBAR
+***************************************************/
+.navbar {
+    font-family: "Montserrat", sans-serif;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    padding: 12px 0 !important;
+    height: 85px;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+    position: sticky;
+    top: 0;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    font-family: "Great Vibes", cursive;
+    font-size: 2.8rem;
+    color: var(--pink);
+    font-weight: 400;
+}
+
+.brand-text {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--bs-primary-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@media (min-width: 992px) {
+    .navbar-brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.navbar .nav-link {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: #111;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--pink);
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    margin-top: 0.75rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: all 0.3s ease;
+}
+
+/* Bootstrap SHOW state */
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu .dropdown-item {
+    color: #555;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: var(--pink);
+    color: #fff;
+    border-radius: 8px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar .navbar-nav {
+        padding: 15px;
+        background: var(--bs-primary);
+    }
+    .navbar .nav-link {
+        color: #fff;
+        padding: 10px 0;
+    }
+    .dropdown-menu {
+        position: static;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .dropdown-menu a.dropdown-item {
+        color: #fff;
+    }
+    .dropdown-menu a.dropdown-item:hover {
+        background: var(--bs-primary-dark);
+    }
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -10px;
+    background: var(--pink);
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/***************************************************
+    HERO HEADER
+***************************************************/
+.hero-header {
+    position: relative;
+    margin-top: -85px;
+    padding-top: 12rem;
+    padding-bottom: 6rem;
+}
+
+.hero-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/***************************************************
+    FEATURES
+***************************************************/
+.feature-item {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(
+        135deg,
+        var(--bs-primary-soft),
+        var(--bs-primary)
+    );
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+}
+
+.feature-item i {
+    font-size: 3rem;
+    color: var(--pink);
+    margin-bottom: 1rem;
+}
+
+.feature-item h5 {
+    font-weight: 600;
+    color: #fff;
+}
+
+/***************************************************
+    TESTIMONIALS (GLASSMORPHIC)
+***************************************************/
+/* Testimonial Section */
+.testimonial-section {
+    background: #fff0f5; /* soft pink background */
+    padding: 4rem 0;
+}
+
+/* Header */
+.testimonial-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff69b4;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-subtitle {
+    font-size: 1.1rem;
+    color: #ff85b3;
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-description {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+}
+
+/* Avatar */
+.testimonial-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffc0cb;
+    margin-bottom: 10px;
+}
+
+/* Text */
+.testimonial-text {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #555;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Name & Role */
+.testimonial-name {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    color: #ff69b4;
+    margin-bottom: 2px;
+}
+
+.testimonial-role {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Carousel Dots */
+.testimonial-carousel .owl-dot {
+    width: 12px;
+    height: 12px;
+    background: #ffc0cb;
+    border-radius: 50%;
+    margin: 0 4px;
+    transition: background 0.3s;
+}
+
+.testimonial-carousel .owl-dot.active {
+    background: #ff69b4;
+}
+
+.testimonial-carousel .owl-dot:hover {
+    background: #ff85b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .testimonial-card {
+        padding: 18px 12px;
+    }
+}
+
+@media (max-width: 575px) {
+    .testimonial-avatar img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/***************************************************
+    CAROUSEL FIXES
+***************************************************/
+.carousel-item {
+    min-height: 550px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    max-width: 600px;
+}
+
+.carousel-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-content .btn {
+    margin: 0.3rem;
+}
+
+/***************************************************
+    FOOTER
+***************************************************/
+.footer {
+    background: var(--soft-pink);
+    color: #333;
+    font-family: "Montserrat", sans-serif;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.footer h2.feminine-font {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--pink);
+    margin-bottom: 20px;
+}
+
+.footer a.btn-link-footer {
+    color: var(--pink);
+    display: block;
+    padding: 2px 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.footer a.btn-link-footer:hover {
+    color: #ff69b4;
+    text-decoration: underline;
+}
+.footer-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    color: var(--pink);
+    position: relative;
+}
+
+.footer-title::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--pink);
+    margin-top: 6px;
+    border-radius: 10px;
+}
+.footer a.btn-link-footer {
+    font-weight: 400;
+    color: var(--pink);
+    transition: all 0.35s ease;
+}
+
+.footer a.btn-link-footer:hover {
+    transform: translateX(6px);
+    color: var(--bs-primary-dark);
+}
+.form-control-footer {
+    border-radius: 50px;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    background: #fff;
+    transition: all 0.4s ease;
+}
+
+.form-control-footer:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 0.2rem rgba(255, 105, 180, 0.25);
+}
+
+.btn-submit-footer {
+    border-radius: 50px;
+    background: var(--pink);
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-footer:hover {
+    background: var(--bs-primary-dark);
+    transform: translateY(-2px);
+}
+
+/***************************************************
+    SECTION FADE-IN
+***************************************************/
+.section-fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/***************************************************
+    RESPONSIVE
+***************************************************/
+@media (max-width: 991.98px) {
+    .feature-item {
+        margin-bottom: 2rem;
+    }
+    .testimonial-card {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-header {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+}
+/***************************************************
+    PROCEED TO CHECKOUT BUTTON (LUXURY)
+***************************************************/
+.btn-checkout {
+    background: linear-gradient(135deg, var(--pink), var(--bs-primary-dark));
+    color: #fff !important;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 24px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 18px 40px rgba(255, 105, 180, 0.45);
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover */
+.btn-checkout:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px rgba(255, 105, 180, 0.65);
+}
+
+/* Click */
+.btn-checkout:active {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
+}
+
+/* Arrow animation */
+.checkout-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-checkout:hover .checkout-arrow {
+    transform: translateX(6px);
+}
+.btn-checkout::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.btn-checkout:hover::before {
+    left: 125%;
+}
+/***************************************************
+    CHECKOUT CARDS
+***************************************************/
+.checkout-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
+}
+
+.checkout-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
+}
+
+/* Form inputs */
+.form-control-pink {
+    border: 2px solid var(--bs-primary-soft);
+    border-radius: 12px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control-pink:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.25);
+    outline: none;
+}
+
+/* Gradient checkout button */
+.btn-checkout {
+    background: linear-gradient(135deg, var(--pink), var(--bs-primary-dark));
+    color: #fff !important;
+    border: none;
+    border-radius: 50px;
+    padding: 14px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.btn-checkout:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 60px rgba(255, 105, 180, 0.5);
+}
+
+.checkout-arrow {
+    transition: transform 0.3s ease;
+}
+
+.btn-checkout:hover .checkout-arrow {
+    transform: translateX(6px);
+}
+
+/* Titles */
+.checkout-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--pink);
+}
+
+/* List-group styling */
+.list-group-item {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.list-group-item strong {
+    font-weight: 700;
+}
+.text-pink {
+    color: var(--pink);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, var(--pink), var(--bs-primary-dark));
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+}
+
+.btn-outline-pink {
+    border: 2px solid var(--pink);
+    color: var(--pink);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-pink:hover {
+    background: var(--pink);
+    color: #fff;
+}
+
+.form-control-pink {
+    border: 2px solid var(--bs-primary-soft);
+    border-radius: 12px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control-pink:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.25);
+    outline: none;
+}

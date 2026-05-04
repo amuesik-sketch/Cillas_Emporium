@@ -4,12 +4,16 @@ WORKDIR /app
 
 COPY . .
 
-RUN apt-get update && apt-get install -y unzip git curl libzip-dev zip \
+RUN apt-get update && apt-get install -y \
+    unzip git curl libzip-dev zip nodejs npm \
     && docker-php-ext-install zip pdo pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
+
+RUN npm install
+RUN npm run build
 
 EXPOSE 10000
 

@@ -2,7 +2,7 @@
     BRAND VARIABLES
 ***************************************************/
 :root {
-    --bs-primary: #ffb6c1; /* baby pink */
+    --bs-primary: #ffb6c1;
     --bs-primary-dark: #ff9eb0;
     --bs-primary-soft: #ffd7e2;
     --pink: #ff69b4;
@@ -19,6 +19,12 @@ html {
 body {
     background: #f8f9fa;
     font-family: "Poppins", sans-serif;
+    overflow-x: hidden; /* FIX: prevent horizontal scroll */
+}
+
+img {
+    max-width: 100%; /* FIX: images never overflow */
+    height: auto;
 }
 
 img.animated.pulse {
@@ -42,7 +48,9 @@ img.animated.pulse {
     background: #000;
     z-index: 9999;
     overflow: hidden;
-    transition: transform 1s ease, opacity 1s ease;
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
 }
 
 #introOverlay video {
@@ -64,6 +72,7 @@ img.animated.pulse {
     width: 100%;
     text-align: center;
     color: #fff;
+    padding: 0 16px; /* FIX: prevent text touching edges */
 }
 
 .intro-text h1 {
@@ -85,7 +94,6 @@ img.animated.pulse {
     margin-bottom: 12px;
 }
 
-/* Subtitle */
 .intro-text p {
     font-family: "Poppins", sans-serif;
     font-size: 1.3rem;
@@ -93,6 +101,18 @@ img.animated.pulse {
     color: #ffffff;
     letter-spacing: 1px;
     text-shadow: 0 3px 15px rgba(0, 0, 0, 0.75);
+}
+
+/* FIX: Intro text on mobile */
+@media (max-width: 575.98px) {
+    .intro-text h1,
+    .welcome-text {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+    .intro-text p {
+        font-size: 1rem;
+    }
 }
 
 /***************************************************
@@ -154,9 +174,19 @@ img.animated.pulse {
     height: 85px;
     width: 100%;
     z-index: 1000;
-    transition: background 0.5s ease, box-shadow 0.5s ease;
+    transition:
+        background 0.5s ease,
+        box-shadow 0.5s ease;
     position: sticky;
     top: 0;
+}
+
+/* FIX: Navbar height on mobile */
+@media (max-width: 991.98px) {
+    .navbar {
+        height: auto;
+        min-height: 65px;
+    }
 }
 
 .navbar.scrolled {
@@ -187,6 +217,17 @@ img.animated.pulse {
     color: var(--bs-primary-dark);
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+/* FIX: Shrink brand on small screens */
+@media (max-width: 575.98px) {
+    .brand-logo {
+        font-size: 2rem;
+    }
+    .brand-text {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -223,7 +264,6 @@ img.animated.pulse {
     transition: all 0.3s ease;
 }
 
-/* Bootstrap SHOW state */
 .dropdown-menu.show {
     opacity: 1;
     visibility: visible;
@@ -293,6 +333,90 @@ img.animated.pulse {
     font-weight: 700;
 }
 
+@media (max-width: 575.98px) {
+    .hero-header {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+        margin-top: -65px; /* FIX: match smaller navbar */
+    }
+    .hero-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/***************************************************
+    HERO CAROUSEL — MOBILE FIXES
+***************************************************/
+.carousel-item {
+    min-height: 550px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* FIX: Shorter carousel on mobile */
+@media (max-width: 767.98px) {
+    .carousel-item {
+        min-height: 380px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .carousel-item {
+        min-height: 300px;
+    }
+}
+
+.carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    width: 90%; /* FIX: was max-width 600px, caused overflow on mobile */
+    max-width: 600px;
+    padding: 0 16px;
+}
+
+.carousel-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-content .btn {
+    margin: 0.3rem;
+}
+
+/* FIX: Carousel text on mobile */
+@media (max-width: 575.98px) {
+    .carousel-content h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+    .carousel-content p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    .carousel-content .btn {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
 /***************************************************
     FEATURES
 ***************************************************/
@@ -307,7 +431,9 @@ img.animated.pulse {
     );
     border-radius: 20px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .feature-item:hover {
@@ -327,15 +453,40 @@ img.animated.pulse {
 }
 
 /***************************************************
-    TESTIMONIALS (GLASSMORPHIC)
+    PRODUCT CARDS — MOBILE FIXES
 ***************************************************/
-/* Testimonial Section */
+.product-item {
+    border-radius: 16px;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
+}
+
+/* FIX: Product cards stack properly on mobile */
+@media (max-width: 575.98px) {
+    .product-item {
+        padding: 1rem !important;
+    }
+    .product-item img {
+        max-height: 200px;
+        object-fit: contain;
+    }
+}
+
+/***************************************************
+    TESTIMONIALS
+***************************************************/
 .testimonial-section {
-    background: #fff0f5; /* soft pink background */
+    background: #fff0f5;
     padding: 4rem 0;
 }
 
-/* Header */
 .testimonial-title {
     font-family: "Playfair Display", serif;
     font-size: 2rem;
@@ -355,14 +506,15 @@ img.animated.pulse {
     color: #555;
 }
 
-/* Testimonial Card */
 .testimonial-card {
     background: #fff;
     border-radius: 20px;
     padding: 20px 15px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     margin: 0 10px;
 }
 
@@ -371,7 +523,6 @@ img.animated.pulse {
     box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
 }
 
-/* Avatar */
 .testimonial-avatar img {
     width: 60px;
     height: 60px;
@@ -381,7 +532,6 @@ img.animated.pulse {
     margin-bottom: 10px;
 }
 
-/* Text */
 .testimonial-text {
     font-size: 0.9rem;
     font-style: italic;
@@ -390,7 +540,6 @@ img.animated.pulse {
     margin: 10px 0;
 }
 
-/* Name & Role */
 .testimonial-name {
     font-family: "Playfair Display", serif;
     font-weight: 600;
@@ -403,7 +552,6 @@ img.animated.pulse {
     color: #777;
 }
 
-/* Carousel Dots */
 .testimonial-carousel .owl-dot {
     width: 12px;
     height: 12px;
@@ -421,7 +569,6 @@ img.animated.pulse {
     background: #ff85b3;
 }
 
-/* Responsive adjustments */
 @media (max-width: 991px) {
     .testimonial-card {
         padding: 18px 12px;
@@ -436,49 +583,7 @@ img.animated.pulse {
 }
 
 /***************************************************
-    CAROUSEL FIXES
-***************************************************/
-.carousel-item {
-    min-height: 550px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.carousel-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-}
-
-.carousel-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-    max-width: 600px;
-}
-
-.carousel-content h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
-}
-
-.carousel-content p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-}
-
-.carousel-content .btn {
-    margin: 0.3rem;
-}
-
-/***************************************************
-    FOOTER
+    FOOTER — MOBILE FIXES
 ***************************************************/
 .footer {
     background: var(--soft-pink);
@@ -508,7 +613,10 @@ img.animated.pulse {
 .footer a.btn-link-footer:hover {
     color: #ff69b4;
     text-decoration: underline;
+    transform: translateX(6px);
+    color: var(--bs-primary-dark);
 }
+
 .footer-title {
     font-family: "Playfair Display", serif;
     font-weight: 600;
@@ -525,16 +633,7 @@ img.animated.pulse {
     margin-top: 6px;
     border-radius: 10px;
 }
-.footer a.btn-link-footer {
-    font-weight: 400;
-    color: var(--pink);
-    transition: all 0.35s ease;
-}
 
-.footer a.btn-link-footer:hover {
-    transform: translateX(6px);
-    color: var(--bs-primary-dark);
-}
 .form-control-footer {
     border-radius: 50px;
     border: 1px solid rgba(255, 105, 180, 0.3);
@@ -560,6 +659,24 @@ img.animated.pulse {
     transform: translateY(-2px);
 }
 
+/* FIX: Footer stacks cleanly on mobile */
+@media (max-width: 767.98px) {
+    .footer {
+        padding-top: 40px;
+        padding-bottom: 24px;
+        text-align: center;
+    }
+    .footer h2.feminine-font {
+        font-size: 1.6rem;
+    }
+    .footer-title::after {
+        margin: 6px auto 0; /* FIX: center the underline on mobile */
+    }
+    .footer .d-flex {
+        justify-content: center;
+    }
+}
+
 /***************************************************
     SECTION FADE-IN
 ***************************************************/
@@ -575,7 +692,7 @@ img.animated.pulse {
 }
 
 /***************************************************
-    RESPONSIVE
+    RESPONSIVE — GENERAL
 ***************************************************/
 @media (max-width: 991.98px) {
     .feature-item {
@@ -586,14 +703,42 @@ img.animated.pulse {
     }
 }
 
-@media (max-width: 575.98px) {
-    .hero-header {
-        padding-top: 8rem;
-        padding-bottom: 4rem;
+/* FIX: Prevent any element from causing horizontal overflow */
+@media (max-width: 767.98px) {
+    .container-fluid,
+    .container,
+    .row {
+        overflow-x: hidden;
+    }
+    /* FIX: Section padding on mobile */
+    .py-5 {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+    /* FIX: Headings too large on mobile */
+    h1 {
+        font-size: 1.8rem !important;
+    }
+    h2 {
+        font-size: 1.5rem !important;
     }
 }
+
+@media (max-width: 575.98px) {
+    /* FIX: Buttons full width on very small screens */
+    .btn-primary {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+    /* FIX: Back to top button position */
+    .back-to-top {
+        right: 20px;
+        bottom: 20px;
+    }
+}
+
 /***************************************************
-    PROCEED TO CHECKOUT BUTTON (LUXURY)
+    PROCEED TO CHECKOUT BUTTON
 ***************************************************/
 .btn-checkout {
     background: linear-gradient(135deg, var(--pink), var(--bs-primary-dark));
@@ -613,21 +758,19 @@ img.animated.pulse {
     gap: 10px;
     position: relative;
     overflow: hidden;
+    width: 100%; /* FIX: full width on mobile */
 }
 
-/* Hover */
 .btn-checkout:hover {
     transform: translateY(-4px);
     box-shadow: 0 25px 60px rgba(255, 105, 180, 0.65);
 }
 
-/* Click */
 .btn-checkout:active {
     transform: translateY(-1px);
     box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
 }
 
-/* Arrow animation */
 .checkout-arrow {
     font-size: 1.2rem;
     transition: transform 0.3s ease;
@@ -636,6 +779,7 @@ img.animated.pulse {
 .btn-checkout:hover .checkout-arrow {
     transform: translateX(6px);
 }
+
 .btn-checkout::before {
     content: "";
     position: absolute;
@@ -651,6 +795,7 @@ img.animated.pulse {
 .btn-checkout:hover::before {
     left: 125%;
 }
+
 /***************************************************
     CHECKOUT CARDS
 ***************************************************/
@@ -662,12 +807,19 @@ img.animated.pulse {
     box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
 }
 
+/* FIX: Checkout card padding on mobile */
+@media (max-width: 575.98px) {
+    .checkout-card {
+        padding: 1.2rem;
+        border-radius: 14px;
+    }
+}
+
 .checkout-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
 }
 
-/* Form inputs */
 .form-control-pink {
     border: 2px solid var(--bs-primary-soft);
     border-radius: 12px;
@@ -681,37 +833,6 @@ img.animated.pulse {
     outline: none;
 }
 
-/* Gradient checkout button */
-.btn-checkout {
-    background: linear-gradient(135deg, var(--pink), var(--bs-primary-dark));
-    color: #fff !important;
-    border: none;
-    border-radius: 50px;
-    padding: 14px;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
-.btn-checkout:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 25px 60px rgba(255, 105, 180, 0.5);
-}
-
-.checkout-arrow {
-    transition: transform 0.3s ease;
-}
-
-.btn-checkout:hover .checkout-arrow {
-    transform: translateX(6px);
-}
-
-/* Titles */
 .checkout-title {
     font-family: "Playfair Display", serif;
     font-size: 1.6rem;
@@ -719,7 +840,6 @@ img.animated.pulse {
     color: var(--pink);
 }
 
-/* List-group styling */
 .list-group-item {
     font-size: 1rem;
     padding: 0.75rem 1rem;
@@ -728,6 +848,7 @@ img.animated.pulse {
 .list-group-item strong {
     font-weight: 700;
 }
+
 .text-pink {
     color: var(--pink);
 }
@@ -756,15 +877,18 @@ img.animated.pulse {
     color: #fff;
 }
 
-.form-control-pink {
-    border: 2px solid var(--bs-primary-soft);
-    border-radius: 12px;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
+/* FIX: brand footer on mobile */
+.brand-logo-footer {
+    font-family: "Great Vibes", cursive;
+    font-size: 2rem;
+    color: var(--pink);
 }
 
-.form-control-pink:focus {
-    border-color: var(--pink);
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.25);
-    outline: none;
+.brand-text-footer {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--bs-primary-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }

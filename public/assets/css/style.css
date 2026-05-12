@@ -357,6 +357,13 @@ img.animated.pulse {
         border-top-color: var(--pink) !important;
     }
 
+    /* Navbar must not clip the floating dropdown */
+    .navbar,
+    .navbar > .container,
+    .navbar > .container-fluid {
+        overflow: visible !important;
+    }
+
     /* Parent must be relative so absolute child positions correctly */
     .appointment-dropdown {
         position: relative !important;
@@ -442,6 +449,13 @@ img.animated.pulse {
 /***************************************************
     HERO CAROUSEL — MOBILE FIXES
 ***************************************************/
+/* Keep carousel BELOW the appointment dropdown */
+.carousel,
+#heroCarousel {
+    position: relative;
+    z-index: 1;
+}
+
 .carousel-item {
     min-height: 550px;
     background-size: cover;

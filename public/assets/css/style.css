@@ -19,11 +19,11 @@ html {
 body {
     background: #f8f9fa;
     font-family: "Poppins", sans-serif;
-    overflow-x: hidden; /* FIX: prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 img {
-    max-width: 100%; /* FIX: images never overflow */
+    max-width: 100%;
     height: auto;
 }
 
@@ -72,7 +72,7 @@ img.animated.pulse {
     width: 100%;
     text-align: center;
     color: #fff;
-    padding: 0 16px; /* FIX: prevent text touching edges */
+    padding: 0 16px;
 }
 
 .intro-text h1 {
@@ -103,7 +103,6 @@ img.animated.pulse {
     text-shadow: 0 3px 15px rgba(0, 0, 0, 0.75);
 }
 
-/* FIX: Intro text on mobile */
 @media (max-width: 575.98px) {
     .intro-text h1,
     .welcome-text {
@@ -181,7 +180,6 @@ img.animated.pulse {
     top: 0;
 }
 
-/* FIX: Navbar height on mobile */
 @media (max-width: 991.98px) {
     .navbar {
         height: auto;
@@ -219,7 +217,6 @@ img.animated.pulse {
     text-transform: uppercase;
 }
 
-/* FIX: Shrink brand on small screens */
 @media (max-width: 575.98px) {
     .brand-logo {
         font-size: 2rem;
@@ -252,7 +249,9 @@ img.animated.pulse {
     color: var(--pink);
 }
 
-/* DROPDOWN MENU */
+/***************************************************
+    DROPDOWN MENU — DESKTOP
+***************************************************/
 .dropdown-menu {
     background: #fff;
     border-radius: 12px;
@@ -282,28 +281,53 @@ img.animated.pulse {
     border-radius: 8px;
 }
 
+/***************************************************
+    DROPDOWN MENU — MOBILE FIX
+    Forces the dropdown to be visible when Bootstrap
+    adds the .show class on tap (portrait & landscape)
+***************************************************/
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
         padding: 15px;
         background: var(--bs-primary);
     }
+
     .navbar .nav-link {
         color: #fff;
         padding: 10px 0;
     }
+
+    /* Reset desktop animation/visibility tricks */
     .dropdown-menu {
-        position: static;
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
+        position: static !important;
+        transform: none !important;
+        opacity: 0;
+        visibility: hidden;
+        display: none; /* hidden by default on mobile */
         box-shadow: none;
         border-radius: 0;
+        background: var(--bs-primary-dark);
+        border: none;
+        padding-left: 1rem;
+        margin-top: 0;
+        transition: none; /* no animation needed on mobile */
     }
+
+    /* FIX: Show dropdown when Bootstrap adds .show on tap */
+    .dropdown-menu.show {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
     .dropdown-menu a.dropdown-item {
         color: #fff;
+        padding: 10px 14px;
     }
+
     .dropdown-menu a.dropdown-item:hover {
-        background: var(--bs-primary-dark);
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
     }
 }
 
@@ -337,7 +361,7 @@ img.animated.pulse {
     .hero-header {
         padding-top: 8rem;
         padding-bottom: 4rem;
-        margin-top: -65px; /* FIX: match smaller navbar */
+        margin-top: -65px;
     }
     .hero-header h1 {
         font-size: 2rem;
@@ -354,7 +378,6 @@ img.animated.pulse {
     position: relative;
 }
 
-/* FIX: Shorter carousel on mobile */
 @media (max-width: 767.98px) {
     .carousel-item {
         min-height: 380px;
@@ -380,7 +403,7 @@ img.animated.pulse {
     transform: translate(-50%, -50%);
     color: #fff;
     text-align: center;
-    width: 90%; /* FIX: was max-width 600px, caused overflow on mobile */
+    width: 90%;
     max-width: 600px;
     padding: 0 16px;
 }
@@ -401,7 +424,6 @@ img.animated.pulse {
     margin: 0.3rem;
 }
 
-/* FIX: Carousel text on mobile */
 @media (max-width: 575.98px) {
     .carousel-content h1 {
         font-size: 1.4rem;
@@ -468,7 +490,6 @@ img.animated.pulse {
     box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
 }
 
-/* FIX: Product cards stack properly on mobile */
 @media (max-width: 575.98px) {
     .product-item {
         padding: 1rem !important;
@@ -611,10 +632,9 @@ img.animated.pulse {
 }
 
 .footer a.btn-link-footer:hover {
-    color: #ff69b4;
+    color: var(--bs-primary-dark);
     text-decoration: underline;
     transform: translateX(6px);
-    color: var(--bs-primary-dark);
 }
 
 .footer-title {
@@ -659,7 +679,6 @@ img.animated.pulse {
     transform: translateY(-2px);
 }
 
-/* FIX: Footer stacks cleanly on mobile */
 @media (max-width: 767.98px) {
     .footer {
         padding-top: 40px;
@@ -670,7 +689,7 @@ img.animated.pulse {
         font-size: 1.6rem;
     }
     .footer-title::after {
-        margin: 6px auto 0; /* FIX: center the underline on mobile */
+        margin: 6px auto 0;
     }
     .footer .d-flex {
         justify-content: center;
@@ -703,19 +722,16 @@ img.animated.pulse {
     }
 }
 
-/* FIX: Prevent any element from causing horizontal overflow */
 @media (max-width: 767.98px) {
     .container-fluid,
     .container,
     .row {
         overflow-x: hidden;
     }
-    /* FIX: Section padding on mobile */
     .py-5 {
         padding-top: 2.5rem !important;
         padding-bottom: 2.5rem !important;
     }
-    /* FIX: Headings too large on mobile */
     h1 {
         font-size: 1.8rem !important;
     }
@@ -725,12 +741,10 @@ img.animated.pulse {
 }
 
 @media (max-width: 575.98px) {
-    /* FIX: Buttons full width on very small screens */
     .btn-primary {
         padding: 10px 18px;
         font-size: 0.9rem;
     }
-    /* FIX: Back to top button position */
     .back-to-top {
         right: 20px;
         bottom: 20px;
@@ -758,7 +772,7 @@ img.animated.pulse {
     gap: 10px;
     position: relative;
     overflow: hidden;
-    width: 100%; /* FIX: full width on mobile */
+    width: 100%;
 }
 
 .btn-checkout:hover {
@@ -807,7 +821,6 @@ img.animated.pulse {
     box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
 }
 
-/* FIX: Checkout card padding on mobile */
 @media (max-width: 575.98px) {
     .checkout-card {
         padding: 1.2rem;
@@ -877,7 +890,6 @@ img.animated.pulse {
     color: #fff;
 }
 
-/* FIX: brand footer on mobile */
 .brand-logo-footer {
     font-family: "Great Vibes", cursive;
     font-size: 2rem;

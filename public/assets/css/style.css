@@ -283,8 +283,6 @@ img.animated.pulse {
 
 /***************************************************
     DROPDOWN MENU — MOBILE FIX
-    Forces the dropdown to be visible when Bootstrap
-    adds the .show class on tap (portrait & landscape)
 ***************************************************/
 @media (max-width: 991.98px) {
     .navbar .navbar-nav {
@@ -297,7 +295,7 @@ img.animated.pulse {
         padding: 10px 0;
     }
 
-    /* Reset desktop animation/visibility tricks */
+    /* General dropdown: static, hidden by default */
     .dropdown-menu {
         position: static !important;
         transform: none !important;
@@ -313,7 +311,6 @@ img.animated.pulse {
         transition: none;
     }
 
-    /* FIX: Show dropdown when Bootstrap adds .show on tap */
     .dropdown-menu.show {
         display: block !important;
         opacity: 1 !important;
@@ -333,18 +330,18 @@ img.animated.pulse {
 
 /***************************************************
     APPOINTMENT DROPDOWN — MOBILE ROW FIXES
+    Must come AFTER the general dropdown block
+    so these rules override position: static
 ***************************************************/
-
-/* Make the appointment row always visible with a background
-   so users can see it (not an empty invisible strip) */
 @media (max-width: 991.98px) {
+    /* White bar so the row is always visible */
     .d-flex.align-items-center.d-lg-none {
         background: #fff;
         border-top: 1px solid rgba(255, 105, 180, 0.2);
         padding: 6px 12px !important;
     }
 
-    /* Appointment link text always clearly visible */
+    /* Pink "Appointment" text always visible */
     .appointment-link {
         color: var(--pink) !important;
         font-family: "Playfair Display", serif;
@@ -357,28 +354,34 @@ img.animated.pulse {
     }
 
     .appointment-link::after {
-        /* Bootstrap caret — make it pink */
         border-top-color: var(--pink) !important;
     }
 
-    /* Appointment dropdown overlaps carousel, does NOT push content */
+    /* Parent must be relative so absolute child positions correctly */
     .appointment-dropdown {
-        position: relative;
+        position: relative !important;
     }
 
+    /* Override the static rule above — appointment menu floats */
     .appointment-menu {
-        position: absolute !important; /* overlap, not push */
+        position: absolute !important;
         top: 100% !important;
         left: 0 !important;
-        z-index: 1055 !important; /* above carousel */
+        transform: none !important;
+        z-index: 1055 !important;
         min-width: 200px;
+        display: none; /* hidden until .show */
+        opacity: 0;
+        visibility: hidden;
         background: #fff !important;
         border-radius: 12px !important;
-        box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25) !important;
+        box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3) !important;
         padding: 8px 0 !important;
         border: none !important;
+        margin-top: 4px !important;
     }
 
+    /* Show on tap */
     .appointment-menu.show {
         display: block !important;
         opacity: 1 !important;
@@ -389,6 +392,7 @@ img.animated.pulse {
         color: #333 !important;
         padding: 10px 18px !important;
         font-size: 0.95rem;
+        background: transparent !important;
     }
 
     .appointment-menu .dropdown-item:hover {
